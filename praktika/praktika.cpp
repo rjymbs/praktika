@@ -40,6 +40,24 @@ string* ScanForWords(string text) {
     return result;
 }
 
+//сортировка пузырьком
+string* BubbleSort(string* wordArr) {
+    string currentWord, followingWord, s_now, s_next;
+    for (int i = 0; i < amountOfWords; i++)
+        for (int j = 0; j < amountOfWords - 1; j++) {
+            currentWord = wordArr[j];          // присваиваем текущее слово 
+            followingWord = wordArr[j + 1];    // присваиваем следующее слово 
+            s_now = tolower(currentWord[0]);    // присваиваем 1эл текущего слова 
+            s_next = tolower(followingWord[0]);   // присваиваем 1эл следующего слова
+                if (s_now[0] > s_next[0]) {             //сравниваем первые символы текущего и след. слова
+                    //меняем слова местами
+                   wordArr[j] = followingWord;
+                   wordArr[j + 1] = currentWord;
+            }
+        }
+    return wordArr;
+}
+
 
 
 void start() {
@@ -60,6 +78,7 @@ void start() {
         }
         
         string* words = ScanForWords(initial_text);//формируем слова в массив
+        words = BubbleSort(words); //сортировка
     }
 }
 
